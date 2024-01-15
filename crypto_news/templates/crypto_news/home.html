@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">LEFTEST Crypto names</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-dark " href="#" role="button">Learn more</a>
+  </p>
+</div>
+
+
+
+
+    <table class="table table-striped table-hover table-bordered " >
+  <thead>
+    <tr>
+      <th scope="col">NAME</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">LastUpdate</th>
+      <th scope="col">Daily High</th>
+        <th scope="col">Daily Low</th>
+        <th scope="col">marketCap</th>
+    </tr>
+  </thead>
+      <tbody>
+    {% for key,value in price.DISPLAY.items %}
+{#     <strong>Name</strong> {{ key }} <br/>#}
+{#        <strong>Price:</strong>{{ value.USD.PRICE}}<br/>#}
+{#         <strong>LastUpdate:</strong>{{ value.USD.LASTUPDATE}}<br/>#}
+{#         <strong>Daily High</strong>{{ value.USD.HIGHDAY}}<br/>#}
+{#        <strong>Daily Low</strong>{{ value.USD.LOWDAY}}<br/>#}
+{#       <strong>marketCap:</strong>{{ value.USD.MKTCAP }}<br/>#}
+{#        <hr><br/>#}
+{##}
+{#    <br/>#}
+
+
+    <tr>
+        <td> {{ key }}</td>
+      <td>{{ value.USD.PRICE}}</td>
+      <td>{{ value.USD.LASTUPDATE}}</td>
+        <td>{{ value.USD.HIGHDAY}}</td>
+        <td>{{ value.USD.LOWDAY}}</td>
+        <td>{{ value.USD.MKTCAP }}</td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+
+
+
+{#{{ api.Data  }}#}
+{#{{ price.DISPLAY }}#}
+{#fro news#}
+<div class="container">
+<div class="row">
+        {% for i in api.Data %}
+            <div class="col-sm">
+           <div class="card" style="width: 18rem;">
+              <img src="{{ i.imageurl  }}" class="card-img-top" alt="{{ i.source }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ i.title|slice:'100' }}</h5>
+                <p class="card-text">{{ i.body|slice:'100' }}</p>
+                <a href="{{ i.url }}" class="btn btn-dark">Read More..</a>
+          </div>
+           </div>
+</div>
+                {% endfor %}
+</div>
+</div>
+
+
+
+
+{% endblock %}

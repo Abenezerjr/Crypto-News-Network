@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'price.css' %}">
+
+    {% if notfound %}
+<h2>{{ notfound }}</h2>
+{% else %}
+        {% if crypto.Response %}
+            <h4>Sorry {{ quote }} doesn't exist. please try Again....</h4>
+        {% endif %}
+        {% for key,value in crypto.DISPLAY.items %}
+         <strong>Name</strong> {{ key }} <br/>
+         <strong>Price:</strong>{{ value.USD.PRICE}}<br/>
+         <strong>LastUpdate:</strong>{{ value.USD.LASTUPDATE}}<br/>
+          <strong>Daily High</strong>{{ value.USD.HIGHDAY}}<br/>
+          <strong>Daily Low</strong>{{ value.USD.LOWDAY}}<br/>
+          <strong>marketCap:</strong>{{ value.USD.MKTCAP }}<br/>
+
+    {% endfor %}
+
+    <br/>
+    {% endif %}
+{% endblock %}
